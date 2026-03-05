@@ -1,4 +1,8 @@
-# Challenge MottuFlow
+<div align="center">
+  <img src="https://raw.githubusercontent.com/thejaobiell/MottuFlowJava/refs/heads/main/MottuFlow/src/main/resources/static/images/logo.png" alt="MottuFlow" width="200"/>
+
+  <h1>Mottuflow</h1>
+</div>
 
 Projeto desenvolvido como solução para a empresa **Mottu**, com foco na construção de uma aplicação para **gestão e organização de pátios de motos**, auxiliando no controle operacional, visualização e otimização do fluxo de veículos.
 
