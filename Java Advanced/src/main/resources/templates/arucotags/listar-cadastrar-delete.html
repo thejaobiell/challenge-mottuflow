@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar ArucoTags</title>
+    <link rel="stylesheet" th:href="@{/css/listar-cadastrar-delete.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Gerenciar ArucoTags</h2>
+	
+    <section>
+        <form th:action="@{/arucotags/cadastrar}" method="post">
+
+            <label for="codigo">Código</label>
+            <input id="codigo" type="text" name="codigo" placeholder="Código" required maxlength="50">
+
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="">Selecione</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+                <option value="Manutenção">Manutenção</option>
+            </select>
+
+            <label for="moto">Moto</label>
+            <select id="moto" name="moto.idMoto" required>
+                <option value="">Selecione a Moto</option>
+                <option th:each="moto : ${motos}" th:value="${moto.idMoto}" th:text="${moto.placa}"></option>
+            </select>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+	
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Status</th>
+                    <th>Moto</th>
+                    <th class="actions">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tag : ${tags}">
+                    <td th:text="${tag.codigo}">TAG123</td>
+                    <td th:text="${tag.status}">Ativo</td>
+                    <td th:text="${tag.moto.placa}">ABC1234</td>
+                    <td class="actions">
+                        <a th:href="@{'/arucotags/editar/' + ${tag.idTag}}" class="button edit">Editar</a>
+                        <form th:action="@{'/arucotags/deletar/' + ${tag.idTag}}" method="post"
+                              style="display:block; margin-top:5px;"
+                              onsubmit="return confirm('Tem certeza que deseja deletar esta ArucoTag?')">
+                            <button type="submit" class="button delete">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

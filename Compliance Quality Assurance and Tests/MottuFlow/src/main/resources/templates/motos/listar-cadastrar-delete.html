@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Motos</title>
+    <link rel="stylesheet" th:href="@{/css/listar-cadastrar-delete.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Gerenciar Motos</h2>
+
+	<section>
+	    <form th:action="@{/motos/cadastrar}" method="post">
+	
+	        <label for="placa">Placa</label>
+	        <input id="placa" type="text" name="placa" placeholder="Placa" required maxlength="10">
+	
+	        <label for="modelo">Modelo</label>
+	        <input id="modelo" type="text" name="modelo" placeholder="Modelo" required maxlength="50">
+	
+	        <label for="fabricante">Fabricante</label>
+	        <input id="fabricante" type="text" name="fabricante" placeholder="Fabricante" required maxlength="50">
+	
+	        <label for="ano">Ano</label>
+	        <input id="ano" type="number" name="ano" placeholder="Ano" required min="2010" max="2025" step="1" value="2020">
+	
+	        <label for="localizacaoAtual">Localização Atual</label>
+	        <input id="localizacaoAtual" type="text" name="localizacaoAtual" placeholder="Localização Atual" required>
+	
+	        <label for="patio">Pátio</label>
+	        <select id="patio" name="patio.idPatio" required>
+	            <option value="">Selecione o Pátio</option>
+	            <option th:each="patio : ${patios}"
+	                    th:value="${patio.idPatio}"
+	                    th:text="${patio.nome}"></option>
+	        </select>
+	
+	        <button type="submit">Cadastrar</button>
+	    </form>
+	</section>
+	
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Modelo</th>
+                <th>Fabricante</th>
+                <th>Ano</th>
+                <th>Localização</th>
+                <th>Pátio</th>
+                <th class="actions">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="moto : ${motos}">
+                <td th:text="${moto.placa}">ABC1234</td>
+                <td th:text="${moto.modelo}">Modelo</td>
+                <td th:text="${moto.fabricante}">Fabricante</td>
+                <td th:text="${moto.ano}">2025</td>
+                <td th:text="${moto.localizacaoAtual}">Local</td>
+                <td th:text="${moto.patio.nome}">Pátio X</td>
+                <td class="actions">
+                    <a th:href="@{'/motos/editar/' + ${moto.idMoto}}" class="button edit">Editar</a>
+                    <form th:action="@{'/motos/deletar/' + ${moto.idMoto}}" method="post"
+                          style="display:block; margin-top:5px;"
+                          onsubmit="return confirm('Tem certeza que deseja deletar esta moto?')">
+                        <button type="submit" class="button delete">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

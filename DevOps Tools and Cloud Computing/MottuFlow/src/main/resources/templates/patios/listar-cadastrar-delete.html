@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Pátios</title>
+    <link rel="stylesheet" th:href="@{/css/listar-cadastrar-delete.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Gerenciar Pátios</h2>
+
+    <section>
+	    <form th:action="@{/patios/cadastrar}" method="post">
+	
+	        <label for="nome">Nome do Pátio</label>
+	        <input id="nome" type="text" name="nome" placeholder="Nome do Pátio" required>
+	
+	        <label for="endereco">Endereço</label>
+	        <input id="endereco" type="text" name="endereco" placeholder="Endereço" required>
+	
+	        <label for="capacidadeMaxima">Capacidade Máxima</label>
+	        <input id="capacidadeMaxima" type="number" name="capacidadeMaxima" placeholder="Capacidade Máxima" required min="1">
+	
+	        <button type="submit">Cadastrar</button>
+	    </form>
+	</section>
+
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Capacidade Máxima</th>
+                <th class="actions">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patio : ${patios}">
+                <td th:text="${patio.nome}">Nome do Pátio</td>
+                <td th:text="${patio.endereco}">Endereço</td>
+                <td th:text="${patio.capacidadeMaxima}">100</td>
+                <td class="actions">
+                    <a th:href="@{'/patios/editar/' + ${patio.idPatio}}" class="button edit">Editar</a>
+                    <form th:action="@{'/patios/deletar/' + ${patio.idPatio}}" method="post"
+                          style="display:block; margin-top:5px;"
+                          onsubmit="return confirm('Tem certeza que deseja deletar este pátio?')">
+                        <button type="submit" class="button delete">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

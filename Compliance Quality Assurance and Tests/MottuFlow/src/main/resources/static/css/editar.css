@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Serif', serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #156144;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.edit-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.edit-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #156144;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+form input, form select, form textarea {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #156144;
+    box-shadow: 0 0 5px rgba(21, 97, 68, 0.3);
+}
+
+button, input[type="submit"], a.button {
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button.save, input[type="submit"].save {
+    background-color: #156144;
+    color: white;
+}
+
+button.save:hover, input[type="submit"].save:hover {
+    background-color: #0f4c33;
+    transform: translateY(-2px);
+}
+
+button.cancel, a.button.cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.cancel:hover, a.button.cancel:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 500px) {
+    .edit-container {
+        padding: 20px;
+    }
+
+    form input, form select, form textarea, button {
+        font-size: 12px;
+        padding: 10px;
+    }
+}

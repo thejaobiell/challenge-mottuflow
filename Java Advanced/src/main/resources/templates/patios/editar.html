@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Pátio</title>
+    <link rel="stylesheet" th:href="@{/css/editar.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Editar Pátio</h2>
+    <form th:action="@{'/patios/editar/' + ${patio.idPatio}}"
+          method="post"
+          th:object="${patio}">
+
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" th:field="*{nome}" name="nome" placeholder="Nome do Pátio" required>
+
+        <label for="endereco">Endereço</label>
+        <input id="endereco" type="text" th:field="*{endereco}" name="endereco" placeholder="Endereço" required>
+
+        <label for="capacidadeMaxima">Capacidade Máxima</label>
+        <input id="capacidadeMaxima" type="number" th:field="*{capacidadeMaxima}" name="capacidadeMaxima" required>
+
+        <button type="submit" class="save">Salvar Alterações</button>
+        <a th:href="@{/patios/listar}" class="button cancel">Cancelar</a>
+    </form>
+</main>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

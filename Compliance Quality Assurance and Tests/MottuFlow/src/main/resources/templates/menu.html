@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+	<link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+    <div th:replace="~{components/header :: header}"></div>
+	    <main>
+	        <div class="main-left">
+	            <img th:src="@{/images/logo.png}" alt="logo mottuflow">
+	        </div>
+	        <div class="main-right">
+	            <a th:href="@{/funcionarios/listar-cadastrar-delete}">Gerenciar Funcionários</a>
+	            <a th:href="@{/motos/listar-cadastrar-delete}">Gerenciar Moto</a>
+	            <a th:href="@{/patios/listar-cadastrar-delete}">Gerenciar Pátios</a>
+	            <a th:href="@{/arucotags/listar-cadastrar-delete}">Gerenciar ArUco Tag</a>
+	            <a th:href="@{/cameras/listar-cadastrar-delete}">Gerenciar Camera</a>
+	            <a th:href="@{/localidades/listar-cadastrar-delete}">Gerenciar Localidade</a>
+		        <a th:href="@{/status/listar-cadastrar-delete}">Gerenciar Status</a>
+	        </div>
+	    </main>
+    <div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

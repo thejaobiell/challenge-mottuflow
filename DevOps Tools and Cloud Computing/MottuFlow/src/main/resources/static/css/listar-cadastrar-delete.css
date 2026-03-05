@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Serif', serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #156144;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #156144;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input, form select, form textarea {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #156144;
+}
+
+button, input[type="submit"], a.button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    transition: background 0.3s;
+}
+
+button, input[type="submit"], a.button.default {
+    background-color: #156144;
+    color: white;
+}
+
+button:hover, input[type="submit"]:hover, a.button.default:hover {
+    background-color: #0f4c33;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table th {
+    background-color: #156144;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table td.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 120px;
+}
+
+.button.edit {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+}
+
+.button.edit:hover {
+    background-color: #218838;
+}
+
+.button.delete {
+    background-color: #dc3545;
+    color: white;
+    width: 100%;
+}
+
+.button.delete:hover {
+    background-color: #c82333;
+}
+
+a {
+    color: #156144;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.profile-container, .main-left, .main-right {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/perfil.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+    <div th:replace="~{components/header :: header}"></div>
+    
+    <main>
+        <div class="profile-container">
+            <div class="profile-card">
+			    <h2>Perfil do Usuário</h2>
+			
+			    <div class="profile-content">
+			        <div class="profile-fields">
+			            <div class="profile-field">
+			                <span class="profile-label">Nome:</span>
+			                <span class="profile-value" th:text="${usuario.nome}">CONTA ADMIN</span>
+			            </div>
+			            <div class="profile-field">
+			                <span class="profile-label">Email:</span>
+			                <span class="profile-value" th:text="${usuario.email}">admin@email.com</span>
+			            </div>
+			            <div class="profile-field">
+			                <span class="profile-label">CPF:</span>
+			                <span class="profile-value" th:text="${usuario.cpf}">000.000.000-00</span>
+			            </div>
+			            <div class="profile-field">
+			                <span class="profile-label">Cargo:</span>
+			                <span class="profile-value" th:text="${usuario.cargo}">Administrador</span>
+			            </div>
+			            <div class="profile-field">
+			                <span class="profile-label">Telefone:</span>
+			                <span class="profile-value" th:text="${usuario.telefone}">(00) 00000-0000</span>
+			            </div>
+			        </div>
+			
+			        <div class="profile-change-password">
+			            <h3>Alterar Senha</h3>
+				        	<div th:if="${sucesso}" style="color:green; margin-bottom:15px;" th:text="${sucesso}"></div>
+							<div th:if="${erro}" style="color:red; margin-bottom:15px;" th:text="${erro}"></div>
+			            <form th:action="@{/alterar-senha}" method="post">
+				            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			                <div class="form-group">
+			                    <label for="senhaAtual">Senha Atual:</label>
+			                    <input type="password" id="senhaAtual" name="senhaAtual" required>
+			                </div>
+			                <div class="form-group">
+			                    <label for="novaSenha">Nova Senha:</label>
+			                    <input type="password" id="novaSenha" name="novaSenha" required>
+			                </div>
+			                <div class="form-group">
+			                    <label for="confirmarSenha">Confirmar Nova Senha:</label>
+			                    <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+			                </div>
+			                <button type="submit" class="btn-update">Atualizar Senha</button>
+			            </form>
+			        </div>
+			    </div>
+			
+			    <div class="profile-actions">
+			        <form th:action="@{/logout}" method="post" onsubmit="return confirmLogout()">
+			            <button type="submit" class="btn-logout">Logout</button>
+			        </form>
+			    </div>
+			</div>
+        </div>
+    </main>
+
+    <div th:replace="~{components/footer :: footer}"></div>
+</body>
+
+<script>
+function confirmLogout() {
+    return confirm("Tem certeza que deseja sair?");
+}
+</script>
+</html>

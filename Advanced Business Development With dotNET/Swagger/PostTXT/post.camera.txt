@@ -1,0 +1,6 @@
+{
+  "StatusOperacional": "Ativa",
+  "LocalizacaoFisica": "Entrada Principal",
+  "IdPatio": 1
+}
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Status</title>
+    <link rel="stylesheet" th:href="@{/css/listar-cadastrar-delete.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+	<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+<main>
+    <h2>Gerenciar Status</h2>
+
+    <section>
+        <form th:action="@{/status/cadastrar}" method="post" th:object="${novoStatus}">
+            <label for="tipoStatus">Tipo de Status</label>
+            <input id="tipoStatus" type="text" th:field="*{tipoStatus}" required>
+
+            <label for="descricao">Descrição</label>
+            <input id="descricao" type="text" th:field="*{descricao}">
+
+            <label for="moto">Moto</label>
+            <select id="moto" th:field="*{moto}" required>
+                <option th:each="moto : ${motos}" th:value="${moto.idMoto}" th:text="${moto.placa}"></option>
+            </select>
+
+            <label for="funcionario">Funcionário</label>
+            <select id="funcionario" th:field="*{funcionario}" required>
+                <option th:each="func : ${funcionarios}" th:value="${func.id_funcionario}" th:text="${func.nome}"></option>
+            </select>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Moto</th>
+                <th>Funcionário</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="status : ${statusList}">
+                <td th:text="${status.tipoStatus}"></td>
+                <td th:text="${status.descricao}"></td>
+                <td th:text="${status.moto.placa}"></td>
+                <td th:text="${status.funcionario.nome}"></td>
+                <td th:text="${#temporals.format(status.dataStatus,'dd/MM/yyyy HH:mm')}"></td>
+                <td>
+                    <a th:href="@{'/status/editar/' + ${status.idStatus}}" class="button edit">Editar</a>
+                    <form th:action="@{'/status/deletar/' + ${status.idStatus}}" method="post" style="display:block; margin-top:5px;"
+                          onsubmit="return confirm('Deseja realmente deletar este status?')">
+                        <button type="submit" class="button delete">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

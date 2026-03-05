@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Localidades</title>
+    <link rel="stylesheet" th:href="@{/css/listar-cadastrar-delete.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Gerenciar Localidades</h2>
+
+    <section>
+        <form th:action="@{/localidades/cadastrar}" method="post" th:with="now=${#dates.createNow()}">
+		    <label for="dataHora">Data e Hora</label>
+		    <input id="dataHora" type="datetime-local" name="dataHora" required
+		           th:value="${dataHoraAtual}">
+
+
+            <label for="pontoReferencia">Ponto de Referência</label>
+            <input id="pontoReferencia" type="text" name="pontoReferencia" placeholder="Ponto de Referência" required maxlength="100">
+
+            <label for="moto">Moto</label>
+            <select id="moto" name="moto.idMoto" required>
+                <option value="">Selecione a Moto</option>
+                <option th:each="moto : ${motos}" th:value="${moto.idMoto}" th:text="${moto.placa}"></option>
+            </select>
+
+            <label for="patio">Pátio</label>
+            <select id="patio" name="patio.idPatio" required>
+                <option value="">Selecione o Pátio</option>
+                <option th:each="patio : ${patios}" th:value="${patio.idPatio}" th:text="${patio.nome}"></option>
+            </select>
+
+            <label for="camera">Câmera</label>
+            <select id="camera" name="camera.idCamera" required>
+                <option value="">Selecione a Câmera</option>
+                <option th:each="camera : ${cameras}" th:value="${camera.idCamera}" th:text="${camera.localizacaoFisica}"></option>
+            </select>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Data e Hora</th>
+                <th>Ponto de Referência</th>
+                <th>Moto</th>
+                <th>Pátio</th>
+                <th>Câmera</th>
+                <th class="actions">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="localidade : ${localidades}">
+                <td th:text="${#temporals.format(localidade.dataHora,'yyyy-MM-dd HH:mm')}">2025-01-01 10:00</td>
+                <td th:text="${localidade.pontoReferencia}">Ponto</td>
+                <td th:text="${localidade.moto.placa}">ABC1234</td>
+                <td th:text="${localidade.patio.nome}">Pátio X</td>
+                <td th:text="${localidade.camera.statusOperacional}">Online</td>
+                <td class="actions">
+                    <a th:href="@{'/localidades/editar/' + ${localidade.idLocalidade}}" class="button edit">Editar</a>
+                    <form th:action="@{'/localidades/deletar/' + ${localidade.idLocalidade}}" method="post"
+                          style="display:block; margin-top:5px;"
+                          onsubmit="return confirm('Tem certeza que deseja deletar esta localidade?')">
+                        <button type="submit" class="button delete">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

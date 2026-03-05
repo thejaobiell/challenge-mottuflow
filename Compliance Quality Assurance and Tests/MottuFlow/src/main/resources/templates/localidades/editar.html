@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Localidade</title>
+    <link rel="stylesheet" th:href="@{/css/editar.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+	<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Editar Localidade</h2>
+
+    <form th:action="@{'/localidades/editar/' + ${localidade.idLocalidade}}" method="post" th:object="${localidade}">
+
+        <label for="dataHora">Data e Hora</label>
+        <input id="dataHora" type="datetime-local" th:field="*{dataHora}" name="dataHora" required>
+
+        <label for="pontoReferencia">Ponto de Referência</label>
+        <input id="pontoReferencia" type="text" th:field="*{pontoReferencia}" name="pontoReferencia" required maxlength="100">
+
+        <label for="moto">Moto</label>
+        <select id="moto" th:field="*{moto.idMoto}" name="moto.idMoto" required>
+            <option th:each="moto : ${motos}" th:value="${moto.idMoto}" th:text="${moto.placa}" th:selected="${localidade.moto.idMoto == moto.idMoto}"></option>
+        </select>
+
+        <label for="patio">Pátio</label>
+        <select id="patio" th:field="*{patio.idPatio}" name="patio.idPatio" required>
+            <option th:each="patio : ${patios}" th:value="${patio.idPatio}" th:text="${patio.nome}" th:selected="${localidade.patio.idPatio == patio.idPatio}"></option>
+        </select>
+
+        <label for="camera">Câmera</label>
+        <select id="camera" th:field="*{camera.idCamera}" name="camera.idCamera" required>
+            <option th:each="camera : ${cameras}" th:value="${camera.idCamera}" th:text="${camera.statusOperacional}" th:selected="${localidade.camera.idCamera == camera.idCamera}"></option>
+        </select>
+
+        <button type="submit" class="save">Salvar Alterações</button>
+        <a th:href="@{/localidades/listar}" class="button cancel">Cancelar</a>
+    </form>
+</main>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

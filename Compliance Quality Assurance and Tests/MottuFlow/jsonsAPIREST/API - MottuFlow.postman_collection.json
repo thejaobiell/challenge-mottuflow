@@ -1,0 +1,2370 @@
+{
+	"info": {
+		"_postman_id": "2d6678fb-b100-479d-a5ee-a2e5a535dea4",
+		"name": "API - MottuFlow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39334205",
+		"_collection_link": "https://galactic-resonance-365575.postman.co/workspace/MottuFlow-Endpoints~479ea491-7731-4683-b0a4-56afc7df5c83/collection/39334205-2d6678fb-b100-479d-a5ee-a2e5a535dea4?action=share&source=collection_link&creator=39334205"
+	},
+	"item": [
+		{
+			"name": "0 -JWT",
+			"item": [
+				{
+					"name": "Pegar Token JWT",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@email.com\",\n    \"senha\": \"adminmottu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Token JWT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"substitua este texto\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atualizar-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atualizar-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verificar se JWT de acesso está ativo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tokenAcesso\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNb3R0dUZsb3ciLCJzdWIiOiJhZG1pbkBlbWFpbC5jb20iLCJleHAiOjE3NTg1OTQyNjN9.uyRgMo9nGf6DWMC-WnE4eFukjqCvqfVrSSKT3yMj1qo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/verificar-jwt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"verificar-jwt"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "1 - Funcionario",
+			"item": [
+				{
+					"name": "Listar Funcionários",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcionario/listar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcionario",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Funcionário por ID",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcionario/buscar-por-id/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcionario",
+								"buscar-por-id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Funcionário por CPF",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcionario/buscar-por-cpf/000.000.000-00",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcionario",
+								"buscar-por-cpf",
+								"000.000.000-00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Funcionário",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Novo Funcionário\",\n    \"cpf\": \"333.333.333-33\",\n    \"cargo\": \"MECANICO\",\n    \"telefone\": \"(33) 33333-3333\",\n    \"email\": \"novo@email.com\",\n    \"senha\": \"senha123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/funcionario/cadastrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcionario",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Funcionário",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"nome\": \"João Mecânico Atualizado\",\n    \"cpf\": \"111.111.111-11\",\n    \"cargo\": \"MECANICO\",\n    \"telefone\": \"(11) 11111-1111\",\n    \"email\": \"joao@email.com\",\n    \"senha\": \"novaSenha123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/funcionario/editar/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcionario",
+								"editar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Senha Funcionario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@email.com\",\n    \"senhaAtual\": \"adminmottu\",\n    \"novaSenha\": \"mottuadmin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/funcionario/alterar-senha",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcionario",
+								"alterar-senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Funcionário",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/funcionario/deletar/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"funcionario",
+								"deletar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "2 - Patio",
+			"item": [
+				{
+					"name": "Listar Todos Patios (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/patios/listar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"patios",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Patio por ID (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/patios/buscar-por-id/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"patios",
+								"buscar-por-id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Patio (POST)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Patio AlfaBeta\",\n    \"endereco\": \"Rua Principal, 123\",\n    \"capacidadeMaxima\": 500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/patios/cadastrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"patios",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Patio (PUT)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Patio Atualizado\",\n    \"endereco\": \"Rua Nova, 456\",\n    \"capacidadeMaxima\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/patios/editar/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"patios",
+								"editar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Patio (DELETE)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/patios/deletar/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"patios",
+								"deletar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "3 - Moto",
+			"item": [
+				{
+					"name": "Listar Todos Motos (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/listar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Motos + AruCo Tags",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/motos-com-tags",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"motos-com-tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Moto por ID (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/buscar-por-id/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"buscar-por-id",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Motos por Placa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/buscar-por-placa/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"buscar-por-placa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Moto por Fabricante (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/buscar-por-fabricante?fabricante=Yamaha",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"buscar-por-fabricante"
+							],
+							"query": [
+								{
+									"key": "fabricante",
+									"value": "Yamaha"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Moto por Pátio (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/buscar-por-patio/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"buscar-por-patio",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Moto por Modelo (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/buscar-por-modelo/Mottu Pop",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"buscar-por-modelo",
+								"Mottu Pop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Moto (POST)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"placa\": \"ABC-1234\",\n    \"modelo\": \"Honda CB500\",\n    \"fabricante\": \"Honda\",\n    \"ano\": 2021,\n    \"idPatio\": 2,\n    \"localizacaoAtual\": \"Setor A\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/motos/cadastrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Moto (PUT)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"placa\": \"XYZ-5678\",\n    \"modelo\": \"Yamaha MT-07\",\n    \"fabricante\": \"Yamaha\",\n    \"ano\": 2022,\n    \"idPatio\": 2,\n    \"localizacaoAtual\": \"Setor B\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/motos/editar/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"editar",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Moto (DELETE)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motos/deletar/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motos",
+								"deletar",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "4 - Camera",
+			"item": [
+				{
+					"name": "Listar Todas Cameras (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cameras/listar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cameras",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Camera por ID (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cameras/buscar-por-id/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cameras",
+								"buscar-por-id",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Camera por StatusOperacional(GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cameras/buscar-por-status/Operacional",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cameras",
+								"buscar-por-status",
+								"Operacional"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Camera (POST)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"statusOperacional\": \"ONLINE\",\n    \"localizacaoFisica\": \"Entrada do Patio\",\n    \"idPatio\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cameras/cadastrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cameras",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Camera (PUT)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"statusOperacional\": \"INATIVA\",\n    \"localizacaoFisica\": \"Saida do Patio\",\n    \"idPatio\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cameras/editar/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cameras",
+								"editar",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Camera (DELETE)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cameras/deletar/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cameras",
+								"deletar",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "5 - ArucoTag",
+			"item": [
+				{
+					"name": "Listar Todos ArucoTags (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aruco-tags/listar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aruco-tags",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar ArucoTag por ID (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aruco-tags/buscar-por-id/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aruco-tags",
+								"buscar-por-id",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar ArucoTag por Status (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aruco-tags/buscar-por-status/ativo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aruco-tags",
+								"buscar-por-status",
+								"ativo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar ArucoTag por Codigo (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aruco-tags/buscar-por-codigo/TAG004",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aruco-tags",
+								"buscar-por-codigo",
+								"TAG004"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar ArucoTag (POST)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"TAG12345\",\n    \"idMoto\": 4,\n    \"status\": \"ATIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aruco-tags/cadastrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aruco-tags",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar ArucoTag (PUT)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"TAG54321\",\n    \"idMoto\": 4,\n    \"status\": \"INATIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aruco-tags/editar/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aruco-tags",
+								"editar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar ArucoTag (DELETE)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aruco-tags/deletar/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aruco-tags",
+								"deletar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "6 - Status",
+			"item": [
+				{
+					"name": "Listar Todos Status (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status/listar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Status por ID (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status/buscar-por-id/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"buscar-por-id",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Status por Moto (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status/buscar-por-moto/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"buscar-por-moto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Status por TIpo Status (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status/buscar-por-tipo?tipoStatus=BAIXA_BOLETIM_OCORRENCIA",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"buscar-por-tipo"
+							],
+							"query": [
+								{
+									"key": "tipoStatus",
+									"value": "BAIXA_BOLETIM_OCORRENCIA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Status por Descrição (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status/buscar-por-descricao?descricao=Perda por BO",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"buscar-por-descricao"
+							],
+							"query": [
+								{
+									"key": "descricao",
+									"value": "Perda por BO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Status por Período de Tempo (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status/buscar-por-periodo?inicio=2025-09-28T00:00:00&fim=2025-09-28T23:59:59",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"buscar-por-periodo"
+							],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "2025-09-28T00:00:00"
+								},
+								{
+									"key": "fim",
+									"value": "2025-09-28T23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Status (POST)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idMoto\": 4,\n    \"tipoStatus\": \"DISPONIVEL\",\n    \"descricao\": \"Moto disponível para uso\",\n    \"idFuncionario\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/status/cadastrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Status (PUT)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idMoto\": 4,\n    \"tipoStatus\": \"RESERVADO\",\n    \"descricao\": \"Moto em manutenção\",\n    \"idFuncionario\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/status/editar/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"editar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Status (DELETE)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status/deletar/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status",
+								"deletar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "7 - Localidade",
+			"item": [
+				{
+					"name": "Listar Todas Localidades (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/localidades/listar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Localidade por ID (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/localidades/buscar-por-id/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"buscar-por-id",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Localidade por Patio ID (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/localidades/buscar-por-patio/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"buscar-por-patio",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Localidade por Ponto Referencia (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/localidades/buscar-por-ponto-referencia/Vaga",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"buscar-por-ponto-referencia",
+								"Vaga"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Localidade por Datas (GET)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/localidades/buscar-por-periodo?dataInicio=2025-09-06T08:00:00.000Z&dataFim=2025-09-08T08:20:00.000Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"buscar-por-periodo"
+							],
+							"query": [
+								{
+									"key": "dataInicio",
+									"value": "2025-09-06T08:00:00.000Z"
+								},
+								{
+									"key": "dataFim",
+									"value": "2025-09-08T08:20:00.000Z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Localidade (POST)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataHora\": \"2025-05-18T20:00:00\",\n    \"idMoto\": 4,\n    \"idPatio\": 3,\n    \"pontoReferencia\": \"Entrada Principal\",\n    \"idCamera\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/localidades/cadastrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Localidade (PUT)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataHora\": \"2025-05-18T20:00:00\",\n    \"idMoto\": 4,\n    \"idPatio\": 3,\n    \"pontoReferencia\": \"Area de Manuntenção\",\n    \"idCamera\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/localidades/editar/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"editar",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Localidade (DELETE)",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/localidades/deletar/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"localidades",
+								"deletar",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://mottuflow-app.brazilsouth.azurecontainer.io:8080/api"
+		},
+		{
+			"key": "jwt",
+			"value": "<mude aqui>"
+		}
+	]
+}

@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "MottuFlow",
+    "slug": "MottuFlow",
+    "version": "2.0",
+    "orientation": "portrait",
+    "icon": "./images/logo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.joao.mottuflow"
+    },
+    "android": {
+      "package": "com.joao.mottuflow",
+      "adaptiveIcon": {
+        "foregroundImage": "./images/logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./images/logo.png"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}

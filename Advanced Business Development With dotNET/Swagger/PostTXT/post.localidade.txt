@@ -1,0 +1,7 @@
+{
+  "dataHora": "2025-09-30T12:00:00",
+  "pontoReferencia": "Entrada Principal",
+  "idMoto": 1,
+  "idPatio": 1,
+  "idCamera": 1
+}

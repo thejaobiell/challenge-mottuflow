@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Moto</title>
+    <link rel="stylesheet" th:href="@{/css/editar.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Editar Moto</h2>
+    <form th:action="@{'/motos/editar/' + ${moto.idMoto}}"
+          method="post"
+          th:object="${moto}">
+
+        <label for="placa">Placa</label>
+        <input id="placa" type="text" th:field="*{placa}" name="placa" required maxlength="10">
+
+        <label for="modelo">Modelo</label>
+        <input id="modelo" type="text" th:field="*{modelo}" name="modelo" required maxlength="50">
+
+        <label for="fabricante">Fabricante</label>
+        <input id="fabricante" type="text" th:field="*{fabricante}" name="fabricante" required maxlength="50">
+
+        <label for="ano">Ano</label>
+        <input id="ano" type="number" th:field="*{ano}" name="ano" required min="2010" max="2025">
+
+        <label for="localizacaoAtual">Localização Atual</label>
+        <input id="localizacaoAtual" type="text" th:field="*{localizacaoAtual}" name="localizacaoAtual" required>
+
+        <label for="patio">Pátio</label>
+        <select id="patio" th:field="*{patio.idPatio}" name="patio.idPatio" required>
+            <option th:each="patio : ${patios}"
+                    th:value="${patio.idPatio}"
+                    th:text="${patio.nome}"
+                    th:selected="${moto.patio.idPatio == patio.idPatio}"></option>
+        </select>
+
+        <button type="submit" class="save">Salvar Alterações</button>
+        <a th:href="@{/motos/listar}" class="button cancel">Cancelar</a>
+    </form>
+</main>
+
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

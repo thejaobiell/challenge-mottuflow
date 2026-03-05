@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Status</title>
+    <link rel="stylesheet" th:href="@{/css/editar.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+	<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+<main>
+    <h2>Editar Status</h2>
+    <form th:action="@{'/status/editar/' + ${status.idStatus}}" method="post" th:object="${status}">
+        <label for="tipoStatus">Tipo de Status</label>
+        <input id="tipoStatus" type="text" th:field="*{tipoStatus}" required>
+
+        <label for="descricao">Descrição</label>
+        <input id="descricao" type="text" th:field="*{descricao}">
+
+        <label for="moto">Moto</label>
+        <select id="moto" th:field="*{moto.idMoto}" required>
+		    <option th:each="moto : ${motos}"
+		            th:value="${moto.idMoto}"
+		            th:text="${moto.placa}">
+		    </option>
+		</select>
+
+        <label for="funcionario">Funcionário</label>
+		<select id="funcionario" th:field="*{funcionario.id_funcionario}" required>
+		    <option th:each="func : ${funcionarios}"
+		            th:value="${func.id_funcionario}"
+		            th:text="${func.nome}">
+		    </option>
+		</select>
+
+        <button type="submit" class="save">Salvar Alterações</button>
+        <a th:href="@{/status/listar}" class="button cancel">Cancelar</a>
+    </form>
+</main>
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# MottuFlow IoT - Dependências Python
+
+# Visão Computacional
+opencv-contrib-python>=4.8.0
+numpy>=1.24.0
+
+# Machine Learning (YOLO)
+ultralytics>=8.0.0
+
+# Comunicação HTTP
+requests>=2.31.0
+
+# Web service para câmera/streaming
+Flask>=3.0.0
+Flask-Cors>=4.0.0
+
+# Geração de QR Codes
+qrcode>=7.4.2
+pillow>=10.0.0
+
+# Opcional: Google Colab
+# google-colab

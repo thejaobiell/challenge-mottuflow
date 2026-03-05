@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Câmeras</title>
+    <link rel="stylesheet" th:href="@{/css/listar-cadastrar-delete.css}">
+    <link rel="stylesheet" th:href="@{/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/css/components/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+</head>
+<body>
+<div th:replace="~{components/header :: header}"></div>
+
+<main>
+    <h2>Gerenciar Câmeras</h2>
+
+	<section>
+	    <form th:action="@{/cameras/cadastrar}" method="post">
+	        <label for="statusOperacional">Status Operacional</label>
+	        <select id="statusOperacional" name="statusOperacional" required>
+	            <option value="">Selecione o status</option>
+	            <option value="Online">Online</option>
+	            <option value="Offline">Offline</option>
+	            <option value="Em Manutenção">Em Manutenção</option>
+	        </select>
+	
+	        <label for="localizacaoFisica">Localização Física</label>
+	        <input id="localizacaoFisica" type="text" name="localizacaoFisica" placeholder="Localização Física" required maxlength="255">
+	
+	        <label for="patio">Pátio</label>
+	        <select id="patio" name="patio.idPatio" required>
+	            <option value="">Selecione o Pátio</option>
+	            <option th:each="patio : ${patios}"
+	                    th:value="${patio.idPatio}"
+	                    th:text="${patio.nome}"></option>
+	        </select>
+	
+	        <button type="submit">Cadastrar</button>
+	    </form>
+	</section>
+	
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Status</th>
+                <th>Localização Física</th>
+                <th>Pátio</th>
+                <th class="actions">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="camera : ${cameras}">
+                <td th:text="${camera.statusOperacional}">Operacional</td>
+                <td th:text="${camera.localizacaoFisica}">Local X</td>
+                <td th:text="${camera.patio.nome}">Pátio Y</td>
+                <td class="actions">
+                    <a th:href="@{'/cameras/editar/' + ${camera.idCamera}}" class="button edit">Editar</a>
+                    <form th:action="@{'/cameras/deletar/' + ${camera.idCamera}}" method="post"
+                          style="display:block; margin-top:5px;"
+                          onsubmit="return confirm('Tem certeza que deseja deletar esta câmera?')">
+                        <button type="submit" class="button delete">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>
